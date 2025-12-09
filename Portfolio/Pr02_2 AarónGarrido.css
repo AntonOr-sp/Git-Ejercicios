@@ -1,0 +1,158 @@
+header {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+    font-weight: bold;
+}
+
+nav a {
+    padding: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+nav a:hover{
+    background-color: #cccccc;
+}
+
+h1{
+    padding-left: 20px;
+}
+
+h2{
+    font-size: 30px;
+    padding-left: 50px;
+    margin-top: 75px;
+}
+
+h3 {
+    font-size: 25px;
+    padding-left: 10px;
+}
+
+p {
+    font-size: 20px;
+    margin-left: 10px;
+
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+section {
+    display: block;
+}
+
+.foto_mi{
+    align-self: center;
+    border-radius: 100%;
+}
+
+.quien_soy {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    justify-content: center;
+}
+
+.quien_soy_info{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.mi_nombre_info{
+    font-size: 25px;
+}
+
+.profesion{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.boton_quien_soy{
+    background-color: #04dd04;
+    color: #ffffff;
+    padding: 10px;
+    margin-left: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+a:hover {
+    background-color: grey;
+}
+
+.proyecto {
+    border-color: black;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 30px;
+    display: flex;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    align-items: center;
+    background-color: #cccccc;
+}
+
+.proyecto_texto{
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
+.proyecto_imagen {
+    margin-left: 40px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.boton_proyecto{
+    background-color: #00b0ff;
+    color: #ffffff;
+    padding: 10px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.destacados {
+    display: flex;
+    gap: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.skills{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.skills article{
+    width: 400px;
+    text-align: center;
+    padding: 10px;
+}
+
+footer {
+    font-weight: bold;
+    text-align: center;
+}
+
+footer p{
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
