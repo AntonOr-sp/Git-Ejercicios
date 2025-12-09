@@ -1,3 +1,4 @@
+//canviar contenido
 let titulo = document.getElementById("titulo");
 titulo.textContent = "Título actualizado";
 
@@ -13,3 +14,5 @@ newArticle.innerHTML="<h3>Título del artículo</h3><p>Parrafo del artículo</p>
 document.getElementById("main").appendChild(newArticle);
 }
 // document.body.appendChild(newArticle);
+
+//añadir div
