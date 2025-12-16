@@ -13,7 +13,6 @@ for (let i = 65; i <= 90; i++) {
     teclado.appendChild(tecla);
 }
 
-
 let palabra = "";
 function palabraSecreta() {
     fetch('https://random-word-api.herokuapp.com/word?lang=es&length=5')
@@ -49,10 +48,9 @@ function borrarLetra() {
     }
 }
 
-
 function comprobar() {
     let miTexto = document.getElementById("miTexto");
-    if (miTexto.textContent == "palabra") {
+    if (miTexto.textContent == palabra) {
         miTexto.backgroundColor = "green";
         alert("you win perfect!")
     }
