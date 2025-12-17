@@ -13,18 +13,20 @@ for (let i = 65; i <= 90; i++) {
     teclado.appendChild(tecla);
 }
 
+palabraSecreta();
+
 let palabra = "";
 function palabraSecreta() {
     fetch('https://random-word-api.herokuapp.com/word?lang=es&length=5')
         .then(response => response.json())
         .then(data => {
             palabra = data[0]; // La API devuelve un array, ej: ["perro"]
-            //Pasamos la palabra a mayúsculas
-            palabra = palabra.toUpperCase();
+            //Pasamos la palabra a mayusculas
+            palabra=palabra.toUpperCase();
             console.log("Tu palabra secreta es:", palabra);
-
         });
 }
+
 
 function escribeTecla(letra) {
     console.log(letra);
@@ -43,17 +45,18 @@ function escribeTecla(letra) {
 
 function borrarLetra() {
     let miTexto = document.getElementById("miTexto");
-    if (miTexto.length > 0) {
-        miTexto = miTexto.textContent.substring(0, miTexto.textContent.length - 1);
+    if (miTexto.textContent.length > 0) {
+        miTexto.textContent = miTexto.textContent.substring(0,
+            miTexto.textContent.length - 1);
     }
 }
 
 function comprobar() {
     let miTexto = document.getElementById("miTexto");
     if (miTexto.textContent == palabra) {
-        miTexto.backgroundColor = "green";
-        alert("you win perfect!")
+        miTexto.style.backgroundColor = "green";
+        alert("HAS GANADO, WAHOOOOOOOOOO!")
     }
     else
-        alert("you lost JIJIJIJA")
+        alert("HAS PERDIDO, JIJIJIJA, MIMIMIMIMIMIMIMIMI")
 }
