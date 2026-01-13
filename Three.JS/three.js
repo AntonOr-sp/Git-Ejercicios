@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 // --- A. CONFIGURACIÓN BÁSICA ---
 //Escene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x202020); // Color de fondo gris oscuro
+scene.background = new THREE.Color(0x000000); // Color de fondo gris oscuro
 
 //1. Camara
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -17,25 +17,45 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // --- B. LUCES  ---
-// Luz ambiental (ilumina todo suavemente)
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+// Luz ambiental (ILUMINA TODO SUAVEMENTE)
+const ambientLight = new THREE.AmbientLight(0xffffff, 8);
 scene.add(ambientLight);
 
-// Luz direccional (como el sol)
+// Luz direccional (COMO EL SOL)
 const dirLight = new THREE.DirectionalLight(0xffffff, 1);
 dirLight.position.set(5, 5, 5);
-scene.add(dirLight); 
+scene.add(dirLight);
 
 // --- C. OBJETOS ---
 // Vamos a crear un cubo pero con material que reaccione a la luz
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshStandardMaterial({
-    color: 0x00ff88,
-    roughness: 0.2, // Qué tan áspero es
-    metalness: 0.5  // Qué tan metálico es
+// 1. EL CUBO
+const boxGeo = new THREE.BoxGeometry; // Le puse tamaño para que se vea bien
+const materialCube = new THREE.MeshStandardMaterial({
+    color: 0x00b0ff,
+    roughness: 0.9,
+    metalness: 0.9
 });
-const cube = new THREE.Mesh(geometry, material);
+
+const cube = new THREE.Mesh(boxGeo, materialCube);
 scene.add(cube);
+
+// 2. EL DODECAEDRO
+const materialDodecaedro = new THREE.MeshStandardMaterial({
+    color: 0x04dd04, 
+    roughness: 0.9,
+    metalness: 0.9 
+});
+
+const radius = 1;
+const detail = 2;
+const dodecaGeo = new THREE.DodecahedronGeometry(radius, detail);
+
+const dodecaMesh = new THREE.Mesh(dodecaGeo, materialDodecaedro);
+
+// IMPORTANTE: Moverlo lo suficiente para que no se choque con el cubo
+dodecaMesh.position.x = 3; 
+
+scene.add(dodecaMesh);
 
 // --- D. CONTROLES (La navegación) ---
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -48,6 +68,9 @@ function animate() {
     // Pequeña rotación automática
     cube.rotation.y += 0.005;
     cube.rotation.x += 0.002;
+
+    dodecaMesh.rotation.y += 0.005;
+    dodecaMesh.rotation.x += 0.005;
 
     controls.update(); // Necesario por el damping
     renderer.render(scene, camera);
