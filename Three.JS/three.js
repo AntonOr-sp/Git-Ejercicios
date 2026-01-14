@@ -69,23 +69,67 @@ sphereMesh.position.x = 0;
 sphereMesh.position.y = 2.4;
 scene.add(sphereMesh);
 
-// 3. EL CILINDRO
-const radiusTop = 0.5;
-const radiusBottom = 0.5;
-const height = 1.5;
-const radialSegments = 32;
-const cylGeo = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
-const materialCyl = new THREE.MeshStandardMaterial({
+// 1. GEOMETRÍA COMÚN (la misma para todos)
+const cylGeo = new THREE.CylinderGeometry(0.5, 0.5, 1.5, 32);
+
+// --- CILINDRO 1 (Rojo - Original) ---
+const materialCyl1 = new THREE.MeshStandardMaterial({
     color: 0xff0000,
     roughness: 0.5,
     metalness: 0.5
 });
-const cylinder = new THREE.Mesh(cylGeo, materialCyl);
-cylinder.position.x = 0; // Lo movemos al lado opuesto del dodecaedro
+const cylinder1 = new THREE.Mesh(cylGeo, materialCyl1);
+cylinder1.position.x = 0;
+cylinder1.scale.set(2, 2, 2);
+scene.add(cylinder1);
 
-cylinder.scale.set(2, 2, 2); // MODIFICAR CILINDRO LÍNEA
+// --- CILINDRO 2 (Verde - Nuevo) ---
+const materialCyl2 = new THREE.MeshStandardMaterial({
+    color: 0x00b0ff, // Color verde
+    roughness: 0.2,  // Más brillante
+    metalness: 0.8   // Más metálico
+});
+const cylinder2 = new THREE.Mesh(cylGeo, materialCyl2);
+cylinder2.position.x = 1.4; // Desplazado a la derecha
+cylinder2.position.y = 0.35;
+cylinder2.scale.set(0.75, 1.5, 0.75);
+scene.add(cylinder2);
 
-scene.add(cylinder);
+// --- CILINDRO 3 (Amarillo - Nuevo) ---
+const materialCyl3 = new THREE.MeshStandardMaterial({
+    color: 0x00b0ff, // Color amarillo
+    roughness: 0.2,  // Más opaco/mate
+    metalness: 0.8
+});
+const cylinder3 = new THREE.Mesh(cylGeo, materialCyl3);
+cylinder3.position.x = -1.4; // Desplazado a la izquierda
+cylinder3.position.y = 0.35;
+cylinder3.scale.set(0.75, 1.5, 0.75);
+scene.add(cylinder3);
+
+// --- CILINDRO 4 (Verde - Nuevo) ---
+const materialCyl4 = new THREE.MeshStandardMaterial({
+    color: 0x00b0ff, // Color verde
+    roughness: 0.2,  // Más brillante
+    metalness: 0.8   // Más metálico
+});
+const cylinder4 = new THREE.Mesh(cylGeo, materialCyl2);
+cylinder4.position.x = 0.7; // Desplazado a la derecha
+cylinder4.position.y = -2.65;
+cylinder4.scale.set(0.75, 1.5, 0.75);
+scene.add(cylinder4);
+
+// --- CILINDRO 5 (Verde - Nuevo) ---
+const materialCyl5 = new THREE.MeshStandardMaterial({
+    color: 0x00b0ff, // Color verde
+    roughness: 0.2,  // Más brillante
+    metalness: 0.8   // Más metálico
+});
+const cylinder5 = new THREE.Mesh(cylGeo, materialCyl2);
+cylinder5.position.x = -0.7; // Desplazado a la derecha
+cylinder5.position.y = -2.65;
+cylinder5.scale.set(0.75, 1.5, 0.75);
+scene.add(cylinder5);
 
 // --- D. CONTROLES (La navegación) ---
 const controls = new OrbitControls(camera, renderer.domElement);
