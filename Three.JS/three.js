@@ -27,35 +27,65 @@ dirLight.position.set(5, 5, 5);
 scene.add(dirLight);
 
 // --- C. OBJETOS ---
-// Vamos a crear un cubo pero con material que reaccione a la luz
+// Vamos a crear diversos objetos con materiales que reaccionen a la luz
 // 1. EL CUBO
-const boxGeo = new THREE.BoxGeometry; // Le puse tamaño para que se vea bien
+const boxGeo = new THREE.BoxGeometry(1, 1, 1);
 const materialCube = new THREE.MeshStandardMaterial({
     color: 0x00b0ff,
     roughness: 0.9,
     metalness: 0.9
 });
-
 const cube = new THREE.Mesh(boxGeo, materialCube);
+
+cube.position.x = 4;
+
+// Esta es la línea que modifica el tamaño:
+cube.scale.set(2, 2, 2); 
+
 scene.add(cube);
 
-// 2. EL DODECAEDRO
-const materialDodecaedro = new THREE.MeshStandardMaterial({
-    color: 0x04dd04, 
-    roughness: 0.9,
-    metalness: 0.9 
+// 2. LA ESFERA
+const sphereRad = 0.9; // Ajustado de 6.9 a 1.2 para que se vea bien con el cubo
+const wSegments = 30;
+const hSegments = 30;
+
+const sphereGeo = new THREE.SphereGeometry(
+    sphereRad, 
+    wSegments, 
+    hSegments
+);
+
+const materialSphere = new THREE.MeshStandardMaterial({
+    color: 0x9e9e9e,
+    roughness: 0.2,
+    metalness: 0.5
 });
 
-const radius = 1;
-const detail = 2;
-const dodecaGeo = new THREE.DodecahedronGeometry(radius, detail);
+const sphereMesh = new THREE.Mesh(sphereGeo, materialSphere);
 
-const dodecaMesh = new THREE.Mesh(dodecaGeo, materialDodecaedro);
+// La movemos en el eje Z o Y para que no tape al cubo
+// sphereMesh.position.set(0, 0, -3); 
+sphereMesh.position.x = 0;
+sphereMesh.position.y = 2.4;
+scene.add(sphereMesh);
 
-// IMPORTANTE: Moverlo lo suficiente para que no se choque con el cubo
-dodecaMesh.position.x = 3; 
+// 3. EL CILINDRO
+const radiusTop = 0.5;
+const radiusBottom = 0.5;
+const height = 1.5;
+const radialSegments = 32;
+const cylGeo = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
+const materialCyl = new THREE.MeshStandardMaterial({
+    color: 0xff0000,
+    roughness: 0.5,
+    metalness: 0.5
+});
+const cylinder = new THREE.Mesh(cylGeo, materialCyl);
+cylinder.position.x = 0; // Lo movemos al lado opuesto del dodecaedro
 
-scene.add(dodecaMesh);
+cylinder.scale.set(2, 2, 2); // MODIFICAR CILINDRO LÍNEA
+
+scene.add(cylinder);
 
 // --- D. CONTROLES (La navegación) ---
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -66,11 +96,11 @@ function animate() {
     requestAnimationFrame(animate);
 
     // Pequeña rotación automática
-    cube.rotation.y += 0.005;
-    cube.rotation.x += 0.002;
+    /* cube.rotation.y += 0.005;
+    cube.rotation.x += 0.002; */
 
-    dodecaMesh.rotation.y += 0.005;
-    dodecaMesh.rotation.x += 0.005;
+    /* cylinder.rotation.y += 0.005;;
+    cylinder.rotation.x += 0.005; */
 
     controls.update(); // Necesario por el damping
     renderer.render(scene, camera);
