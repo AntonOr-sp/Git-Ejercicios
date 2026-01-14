@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 // --- A. CONFIGURACIÓN BÁSICA ---
 //Escene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x000000); // Color de fondo gris oscuro
+scene.background = new THREE.Color(0x9e9e9e); // Color de fondo gris oscuro
 
 //1. Camara
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -28,39 +28,21 @@ scene.add(dirLight);
 
 // --- C. OBJETOS ---
 // Vamos a crear diversos objetos con materiales que reaccionen a la luz
-// 1. EL CUBO
-const boxGeo = new THREE.BoxGeometry(1, 1, 1);
-const materialCube = new THREE.MeshStandardMaterial({
-    color: 0x00b0ff,
-    roughness: 0.9,
-    metalness: 0.9
-});
-const cube = new THREE.Mesh(boxGeo, materialCube);
-
-cube.position.x = 4;
-
-// Esta es la línea que modifica el tamaño:
-cube.scale.set(2, 2, 2); 
-
-scene.add(cube);
-
-// 2. LA ESFERA
+// LA ESFERA
 const sphereRad = 0.9; // Ajustado de 6.9 a 1.2 para que se vea bien con el cubo
 const wSegments = 30;
 const hSegments = 30;
 
 const sphereGeo = new THREE.SphereGeometry(
-    sphereRad, 
-    wSegments, 
+    sphereRad,
+    wSegments,
     hSegments
 );
-
 const materialSphere = new THREE.MeshStandardMaterial({
-    color: 0x9e9e9e,
+    color: 0xffaa7b,
     roughness: 0.2,
     metalness: 0.5
 });
-
 const sphereMesh = new THREE.Mesh(sphereGeo, materialSphere);
 
 // La movemos en el eje Z o Y para que no tape al cubo
@@ -72,7 +54,7 @@ scene.add(sphereMesh);
 // 1. GEOMETRÍA COMÚN (la misma para todos)
 const cylGeo = new THREE.CylinderGeometry(0.5, 0.5, 1.5, 32);
 
-// --- CILINDRO 1 (Rojo - Original) ---
+// --- CILINDRO 1 (CUERPO) ---
 const materialCyl1 = new THREE.MeshStandardMaterial({
     color: 0xff0000,
     roughness: 0.5,
@@ -83,11 +65,11 @@ cylinder1.position.x = 0;
 cylinder1.scale.set(2, 2, 2);
 scene.add(cylinder1);
 
-// --- CILINDRO 2 (Verde - Nuevo) ---
+// --- CILINDRO 2 (BRAZO 1) ---
 const materialCyl2 = new THREE.MeshStandardMaterial({
     color: 0x00b0ff, // Color verde
-    roughness: 0.2,  // Más brillante
-    metalness: 0.8   // Más metálico
+    roughness: 0.7,  // Más brillante
+    metalness: 0.3   // Más metálico
 });
 const cylinder2 = new THREE.Mesh(cylGeo, materialCyl2);
 cylinder2.position.x = 1.4; // Desplazado a la derecha
@@ -95,11 +77,11 @@ cylinder2.position.y = 0.35;
 cylinder2.scale.set(0.75, 1.5, 0.75);
 scene.add(cylinder2);
 
-// --- CILINDRO 3 (Amarillo - Nuevo) ---
+// --- CILINDRO 3 (BRAZO 2) ---
 const materialCyl3 = new THREE.MeshStandardMaterial({
     color: 0x00b0ff, // Color amarillo
-    roughness: 0.2,  // Más opaco/mate
-    metalness: 0.8
+    roughness: 0.7,  // Más brillante
+    metalness: 0.3
 });
 const cylinder3 = new THREE.Mesh(cylGeo, materialCyl3);
 cylinder3.position.x = -1.4; // Desplazado a la izquierda
@@ -107,29 +89,41 @@ cylinder3.position.y = 0.35;
 cylinder3.scale.set(0.75, 1.5, 0.75);
 scene.add(cylinder3);
 
-// --- CILINDRO 4 (Verde - Nuevo) ---
+// --- CILINDRO 4 (PIE 1) ---
 const materialCyl4 = new THREE.MeshStandardMaterial({
-    color: 0x00b0ff, // Color verde
-    roughness: 0.2,  // Más brillante
-    metalness: 0.8   // Más metálico
+    color: 0x001cea, // Color verde
+    roughness: 0.7,  // Más brillante
+    metalness: 0.3   // Más metálico
 });
-const cylinder4 = new THREE.Mesh(cylGeo, materialCyl2);
-cylinder4.position.x = 0.7; // Desplazado a la derecha
+const cylinder4 = new THREE.Mesh(cylGeo, materialCyl4);
+cylinder4.position.x = 0.6; // Desplazado a la derecha
 cylinder4.position.y = -2.65;
 cylinder4.scale.set(0.75, 1.5, 0.75);
 scene.add(cylinder4);
 
-// --- CILINDRO 5 (Verde - Nuevo) ---
+// --- CILINDRO 5 (PIE 2) ---
 const materialCyl5 = new THREE.MeshStandardMaterial({
-    color: 0x00b0ff, // Color verde
-    roughness: 0.2,  // Más brillante
-    metalness: 0.8   // Más metálico
+    color: 0x001cea, // Color verde
+    roughness: 0.7,  // Más brillante
+    metalness: 0.3   // Más metálico
 });
-const cylinder5 = new THREE.Mesh(cylGeo, materialCyl2);
-cylinder5.position.x = -0.7; // Desplazado a la derecha
+const cylinder5 = new THREE.Mesh(cylGeo, materialCyl5);
+cylinder5.position.x = -0.6; // Desplazado a la derecha
 cylinder5.position.y = -2.65;
 cylinder5.scale.set(0.75, 1.5, 0.75);
 scene.add(cylinder5);
+
+// --- CILINDRO 6 (SOMBRERO) ---
+const materialCyl6 = new THREE.MeshStandardMaterial({
+    color: 0x000000, // Color verde
+    roughness: 0.7,  // Más brillante
+    metalness: 0.3   // Más metálico
+});
+const cylinder6 = new THREE.Mesh(cylGeo, materialCyl6);
+cylinder6.position.x = 0; // Desplazado a la derecha
+cylinder6.position.y = 3.5;
+cylinder6.scale.set(1.75, 0.75, 1.75);
+scene.add(cylinder6);
 
 // --- D. CONTROLES (La navegación) ---
 const controls = new OrbitControls(camera, renderer.domElement);
