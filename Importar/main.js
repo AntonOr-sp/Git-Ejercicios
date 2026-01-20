@@ -28,7 +28,7 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
 directionalLight.position.set(5, 10, 7);
 scene.add(directionalLight);
 
-// CARGAR MODELO
+// CARGAR MODELO IMPORTADO
 const loader = new GLTFLoader();
 loader.load(
   'Maqueta tren.glb', 
